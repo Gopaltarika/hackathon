@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import About from "./components/About";
+import MyHeader from "./components/MyHeader";
+import MyNav from "./components/MyNav";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import WhyChooseUs from "./components/WhyChooseUs";
+import ContactSec from "./components/ContactSec";
+import Preload from "./components/Preload";
+import Newslatters from "./components/Newslatters";
+import Footer from "./components/Footer";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [loader, setloader] = useState(false);
+  useEffect(() => {
+    setloader(true);
+    setTimeout(() => {
+      setloader(false);
+    },3000);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loader ? (
+        <div>
+          <Preload />
+        </div>
+      ) : (
+        <div className="position-relative">
+          <div className="bg-hero d-flex flex-column">
+            <MyNav />
+            <MyHeader />
+          </div>
+          <About />
+          <WhyChooseUs />
+          <ContactSec />
+          <Newslatters />
+          <Footer />
+        </div>
+      )}
+    </>
   );
 }
 
